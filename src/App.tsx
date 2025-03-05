@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import { AboutMe } from './components/AboutMe';
 import { Certificates } from './components/Certificates';
+import { Footer } from './components/Footer';
 
 const App: React.FC = () => {
     return (
@@ -20,8 +21,8 @@ const App: React.FC = () => {
                 </section>
    
                 {/* Footer */}
-                <div className="mt-20 p-5">
-                    <AboutMe />
+                <div className="">
+                    <Footer />
                 </div>
                 
             </main>
