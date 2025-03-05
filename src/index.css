@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@keyframes pulse-shadow {
+    0% {
+      box-shadow: 0 0 10px #159876;
+    }
+    50% {
+      box-shadow: 0 0 20px #159876, 0 0 30px #159876;
+    }
+    100% {
+      box-shadow: 0 0 10px #159876;
+    }
+}
+  
+/* Clase para aplicar la animación */
+.pulse-shadow {
+    animation: pulse-shadow 1.5s infinite ease-in-out;
+}
+  
