@@ -12,7 +12,7 @@ export const projects = [
       name: "AI Chatbot Assistant",
       description: "A real-time AI chatbot using OpenAI API, React, and Node.js.",
       tools: ["React", "TypeScript", "Node.js", "Express", "OpenAI API"],
-      image: "https://source.unsplash.com/featured/?ai",
+      image: "https://res.cloudinary.com/dytlbyofu/image/upload/v1713913044/Applications%20made/Calculadora_upbshj.png",
       link: "https://your-ai-chatbot.com",
     },
     {
@@ -20,7 +20,7 @@ export const projects = [
       name: "Portfolio Website",
       description: "A personal portfolio website showcasing projects, built with Vite, React, and TailwindCSS.",
       tools: ["Vite", "React", "TailwindCSS", "TypeScript"],
-      image: "https://source.unsplash.com/featured/?portfolio",
+      image: "https://res.cloudinary.com/dytlbyofu/image/upload/v1713913048/Applications%20made/Clima-React-Typescript_jkstxg.png",
       link: "https://your-portfolio.com",
     },
 ];
