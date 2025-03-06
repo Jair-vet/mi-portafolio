@@ -3,15 +3,23 @@ import Navbar from './components/Navbar';
 import { AboutMe } from './components/AboutMe';
 import { Certificates } from './components/Certificates';
 import { Footer } from './components/Footer';
+import { FeaturedProject } from './components/FeaturedProject';
+import { Portfolio } from './components/Portfolio';
 
 const App: React.FC = () => {
     return (
         <div className=' bg-[#1e2326]'>
             <Navbar />
             <main>
+                {/* About me */}
                 <div className="mt-20 p-5">
                     <AboutMe />
                 </div>
+
+                {/* Portafolio */}
+                <section id="portfolio" >
+                    <Portfolio />
+                </section>
                 
                 {/* Certificates */}
                 <section id="certificates" >
