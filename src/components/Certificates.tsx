@@ -1,155 +1,110 @@
-import { useState, useEffect } from "react";
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { certificates } from '../data/certificates';
+import type { Certificate } from '../types';
 
-const certificateData = [
-  {
-    name: "GitHub",
-    img: "https://res.cloudinary.com/dytlbyofu/image/upload/v1703806089/Medalla/git-github_ag7nyx.svg",
-    preview: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671472139/Certificates/Git-Hub.Certificate_ofxi7d.jpg",
-    pdf: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671472139/Certificates/Git-Hub.Certificate_ofxi7d.pdf",
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.06 },
   },
-  {
-    name: "JavaScript",
-    img: "https://res.cloudinary.com/dytlbyofu/image/upload/v1703806089/Medalla/javascript_jzy5wj.svg",
-    preview: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671472139/Certificates/JavaScript-certificate_ww8ttj.jpg",
-    pdf: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671472139/Certificates/JavaScript-certificate_ww8ttj.pdf",
-  },
-  {
-    name: "Node.js",
-    img: "https://res.cloudinary.com/dytlbyofu/image/upload/v1703806091/Medalla/node-cero-experto_aisefo.svg",
-    preview: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671472139/Certificates/Node.js_Certificate_pnwjjg.jpg",
-    pdf: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671472139/Certificates/Node.js_Certificate_pnwjjg.pdf",
-  },
-  {
-    name: "TypeScript",
-    img: "https://res.cloudinary.com/dytlbyofu/image/upload/v1703806093/Medalla/typescript_fopriv.svg",
-    preview: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671472142/Certificates/Typescript_Certificate_agd5a2.jpg",
-    pdf: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671472142/Certificates/Typescript_Certificate_agd5a2.pdf",
-  },
-  {
-    name: "VueJs",
-    img: "https://res.cloudinary.com/dytlbyofu/image/upload/v1703806095/Medalla/vuejs_apqtmz.svg",
-    preview: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671473913/Certificates/VueJs_r1sgjs.jpg",
-    pdf: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671473913/Certificates/VueJs_r1sgjs.pdf",
-  },
-  {
-    name: "PWA",
-    img: "https://res.cloudinary.com/dytlbyofu/image/upload/v1703806092/Medalla/pwa_ljqugb.svg",
-    preview: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671472140/Certificates/PWA-Certificate_bnrlzj.jpg",
-    pdf: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671472140/Certificates/PWA-Certificate_bnrlzj.jpg",
-  },
-  {
-    name: "VISUAL STUDIO",
-    img: "https://res.cloudinary.com/dytlbyofu/image/upload/v1703806232/Medalla/vscode_ypifph.svg",
-    preview: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671472141/Certificates/Visual_Studio_Code_Certificate_jrlmnl.jpg",
-    pdf: "https://res.cloudinary.com/dytlbyofu/image/upload/v1671472141/Certificates/Visual_Studio_Code_Certificate_jrlmnl.pdf",
-  },
-  {
-    name: "TAILWINDCSS",
-    img: "https://res.cloudinary.com/dytlbyofu/image/upload/v1672177463/skills-tools/Tailwindcss_xgnxgg.png",
-    preview: "https://res.cloudinary.com/dytlbyofu/image/upload/v1672159344/Certificates/TailwindCss_o3fze3.jpg",
-    pdf: "https://res.cloudinary.com/dytlbyofu/image/upload/v1672159344/Certificates/TailwindCss_o3fze3.pdf",
-  },
-  {
-    name: "NEXTJS",
-    img: "https://res.cloudinary.com/dytlbyofu/image/upload/v1698447263/skills-tools/nextjs_hibjpc.svg",
-    preview: "https://res.cloudinary.com/dytlbyofu/image/upload/v1687227735/Certificates/Next_umiyph.jpg",
-    pdf: "https://res.cloudinary.com/dytlbyofu/image/upload/v1687227735/Certificates/Next_umiyph.pdf",
-  },
-  {
-    name: "REACTJS",
-    img: "https://res.cloudinary.com/dytlbyofu/image/upload/v1698447440/skills-tools/react_unkzqc.svg",
-    preview: "https://res.cloudinary.com/dytlbyofu/image/upload/v1672859768/Certificates/react_eoec9q.jpg",
-    pdf: "https://res.cloudinary.com/dytlbyofu/image/upload/v1672859768/Certificates/react_eoec9q.pdf",
-  },
-  {
-    name: "VUE",
-    img: "https://res.cloudinary.com/dytlbyofu/image/upload/v1703806094/Medalla/vue-ts_ajgsrj.svg",
-    preview: "https://res.cloudinary.com/dytlbyofu/image/upload/v1703795963/Certificates/vue-JS-pinia_fqvgop.jpg",
-    pdf: "https://res.cloudinary.com/dytlbyofu/image/upload/v1703795963/Certificates/vue-JS-pinia_fqvgop.pdf",
-  },
-];
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { type: 'spring' as const, stiffness: 300, damping: 20 } },
+};
+
+interface PreviewState {
+  cert: Certificate;
+  x: number;
+  y: number;
+}
 
 export const Certificates = () => {
-    const [certificates, setCertificates] = useState<typeof certificateData>([]);
-    const [hoveredCertificate, setHoveredCertificate] = useState<string | null>(null);
-    const [showPreview, setShowPreview] = useState(false);
-    let timeoutId: NodeJS.Timeout;
-  
-    useEffect(() => {
-  
-      // ⚠️ Limpia el localStorage en cada recarga para actualizar los datos
-      localStorage.removeItem("certificates");
-      localStorage.setItem("certificates", JSON.stringify(certificateData));
-  
-      const storedData = JSON.parse(localStorage.getItem("certificates") || "[]");
-      setCertificates(storedData);
-  
-      // Precargar imágenes para mejorar rendimiento
-      storedData.forEach((cert) => {
-        const img = new Image();
-        img.src = cert.img;
-        const preview = new Image();
-        preview.src = cert.preview;
-      });
-    }, []);
+  const [preview, setPreview] = useState<PreviewState | null>(null);
 
-    const handleMouseEnter = (certName: string) => {
-        clearTimeout(timeoutId); // Evita que desaparezca inmediatamente si entra y sale rápido
-        setHoveredCertificate(certName);
-        setShowPreview(true);
-    };
+  const handleMouseEnter = (cert: Certificate, e: React.MouseEvent) => {
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    setPreview({ cert, x: rect.left + rect.width / 2, y: rect.top });
+  };
 
-    const handleMouseLeave = () => {
-        timeoutId = setTimeout(() => {
-          setShowPreview(false);
-          setHoveredCertificate(null);
-        }, 300); // 🔥 Agrega un pequeño delay para evitar el parpadeo
-      };
-  
-    return (
-      <div  className="bg-[#1e2326]">
-        <div className=" text-white text-center">
-          <h2 className="text-4xl font-bold uppercase mb-10">Certificates</h2>
-        </div>
-  
-        <div className="px-24 ">
-          <div className="shadow-xl p-3 w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 justify-items-center mx-auto overflow-visible">
+  const handleMouseLeave = () => setPreview(null);
 
-            {certificates.map((cert, index) => (
-                <div 
-                    key={index} 
-                    className="relative group" 
-                    onMouseEnter={() => handleMouseEnter(cert.name)}
-                    onMouseLeave={handleMouseLeave}
-                >
-                    {/* Imagen del Certificado */}
-                    <a href={cert.pdf} target="_blank" rel="noopener noreferrer">
-                    <img
-                        src={cert.img}
-                        alt={cert.name}
-                        className="w-[90px] cursor-pointer transition-transform duration-300 hover:scale-110"
-                    />
-                    </a>
+  return (
+    <div className="bg-[#1e2326] py-10">
+      <motion.h2
+        className="text-white text-4xl font-bold uppercase text-center mb-10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        Certificates
+      </motion.h2>
 
-                    {/* Modal de Vista Previa */}
-                    {showPreview && hoveredCertificate === cert.name && (
-                    <div 
-                        className="absolute -top-28 left-1/2 transform -translate-x-1/2 bg-black p-2 rounded-md shadow-lg z-10 w-40 text-center transition-all duration-300"
-                        onMouseEnter={() => clearTimeout(timeoutId)} // Previene que se cierre al entrar
-                        onMouseLeave={handleMouseLeave} // Se cierra solo cuando se sale completamente
-                    >
-                        <p className="text-sm text-white font-semibold mb-1">{cert.name}</p>
-                        <img
-                        src={cert.preview}
-                        alt={`${cert.name} Preview`}
-                        className="w-full h-auto rounded-md"
-                        />
-                    </div>
-                    )}
-                </div>
-                ))}
-          </div>
-        </div>
+      <div className="px-8 md:px-24">
+        <motion.div
+          className="shadow-xl p-3 w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 justify-items-center mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          {certificates.map((cert) => (
+            <motion.div
+              key={cert.name}
+              className="relative group"
+              variants={itemVariants}
+              onMouseEnter={(e) => handleMouseEnter(cert, e)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <motion.a
+                href={cert.pdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.15 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+              >
+                <img
+                  src={cert.img}
+                  alt={cert.name}
+                  className="w-[90px] cursor-pointer"
+                  loading="lazy"
+                />
+              </motion.a>
+              <p className="text-center text-xs text-gray-400 mt-1">{cert.name}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
-    );
+
+      {/* Floating preview portal */}
+      <AnimatePresence>
+        {preview && (
+          <motion.div
+            className="fixed z-50 pointer-events-none"
+            style={{
+              left: preview.x,
+              top: preview.y - 10,
+              transform: 'translate(-50%, -100%)',
+            }}
+            initial={{ opacity: 0, scale: 0.85, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.85, y: 8 }}
+            transition={{ duration: 0.15 }}
+          >
+            <div className="bg-[#0d0f10] border border-[#1CB698]/30 p-2 rounded-lg shadow-2xl w-44 text-center">
+              <p className="text-sm text-[#1CB698] font-semibold mb-1">{preview.cert.name}</p>
+              <img
+                src={preview.cert.preview}
+                alt={`${preview.cert.name} preview`}
+                className="w-full h-auto rounded-md"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 };
