@@ -11,6 +11,34 @@ const fadeUp = {
   visible: (i = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 0.1 } }),
 };
 
+const specializations = [
+  {
+    icon: 'fa-solid fa-brain',
+    title: 'AI Integration & Models',
+    items: ['Claude API (Anthropic)', 'Google Gemini', 'Ollama (local LLMs)', 'N8N automation pipelines', 'AI-powered assistants in production'],
+  },
+  {
+    icon: 'fa-solid fa-bolt',
+    title: 'Event-Driven & MCP',
+    items: ['Apache Kafka event pipelines', 'MCP (Model Context Protocol)', 'Async microservice communication', 'Agent-to-agent tool calling', 'Real-time event processing'],
+  },
+  {
+    icon: 'fa-solid fa-flask-vial',
+    title: 'Testing: Playwright & E2E',
+    items: ['Playwright E2E browser automation', 'Jest unit & integration tests', 'Cypress component testing', 'Reusable hooks & skill patterns', '85%+ coverage on critical flows'],
+  },
+  {
+    icon: 'fa-solid fa-diagram-project',
+    title: 'Agent Orchestration',
+    items: ['Multi-agent workflow design', 'Orchestrator / subagent patterns', 'Custom MCP server & client', 'Tool-calling & memory management', 'Claude Code & Cursor integration'],
+  },
+  {
+    icon: 'fa-solid fa-shield-halved',
+    title: 'Auth & Security',
+    items: ['OAuth 2.0 & JWT flows', 'RBAC (role-based access control)', 'Rate limiting with Redis', 'OWASP Top 10 hardening', 'CORS, CSRF & XSS protection'],
+  },
+];
+
 const interests = [
   { name: 'Gaming',  icon: 'fa-solid fa-gamepad' },
   { name: 'Music',   icon: 'fa-solid fa-music' },
@@ -62,6 +90,51 @@ export const AboutMe: React.FC = () => {
             ))}
           </motion.div>
         </div>
+
+        {/* Technical Specializations */}
+        <motion.div
+          className="mb-14"
+          variants={fadeUp} initial="hidden" whileInView="visible" custom={3} viewport={{ once: true }}
+        >
+          <h3
+            className="text-xl font-bold uppercase mb-6 text-center"
+            style={{ fontFamily: "'Righteous', cursive", color: 'var(--text-primary)' }}
+          >
+            Technical Specializations
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {specializations.map((spec, i) => (
+              <motion.div
+                key={spec.title}
+                className="rounded-xl p-5 border border-[var(--border)]"
+                style={{ background: 'var(--bg-card)' }}
+                variants={fadeUp} initial="hidden" whileInView="visible" custom={i * 0.5 + 4} viewport={{ once: true }}
+                whileHover={{ y: -3 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div
+                    className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ background: 'var(--accent-glow)', border: '1px solid var(--border)' }}
+                  >
+                    <i className={`${spec.icon} text-[var(--accent)]`} />
+                  </div>
+                  <h4 className="font-bold text-sm leading-tight" style={{ color: 'var(--text-primary)' }}>
+                    {spec.title}
+                  </h4>
+                </div>
+                <ul className="space-y-1">
+                  {spec.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-xs" style={{ color: 'var(--text-secondary)' }}>
+                      <span style={{ color: 'var(--accent)' }} className="shrink-0 mt-0.5">▸</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Personal info + Interests */}
         <div className="flex flex-col md:flex-row gap-8 items-start">

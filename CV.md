@@ -173,7 +173,7 @@ Pipeline procesando 500M+ registros diarios — tiempo reducido de 6 horas a 15 
 | Idioma | Nivel |
 |--------|-------|
 | **Español** | Nativo |
-| **Inglés** | B2 (Fluido) |
+| **Inglés** | B2 (Conversacional) |
 | **Francés** | B1 (Intermedio) |
 | **Alemán** | A2 (Básico) |
 

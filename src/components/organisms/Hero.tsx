@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { TechOrbit } from './TechOrbit';
 import { SocialIcon } from '../molecules/SocialIcon';
 import { socialLinks } from '../../data/socialLinks';
-import { profile } from '../../data/profile';
 import { useTyped } from '../../hooks/useTyped';
 
 export const Hero: React.FC = () => {
@@ -28,7 +27,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="inicio"
-      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-20"
       style={{ background: 'var(--bg-hero)' }}
     >
       {/* Parallax background layer */}
@@ -44,6 +43,17 @@ export const Hero: React.FC = () => {
         className="flex flex-col items-center gap-8 relative z-10 px-6 text-center"
         style={{ y, opacity }}
       >
+        {/* Typed — main title */}
+        <motion.h1
+          className="text-3xl md:text-5xl font-bold tracking-tight"
+          style={{ fontFamily: "'Righteous', cursive", minHeight: '1.2em' }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <span id="hero-typed" style={{ color: 'var(--accent)' }} />
+        </motion.h1>
+
         {/* 3D Orbit */}
         <motion.div
           initial={{ opacity: 0, scale: 0.85 }}
@@ -52,28 +62,6 @@ export const Hero: React.FC = () => {
         >
           <TechOrbit />
         </motion.div>
-
-        {/* Name */}
-        <motion.h1
-          className="text-4xl md:text-6xl font-bold uppercase tracking-wider"
-          style={{ fontFamily: "'Righteous', cursive", color: 'var(--text-primary)' }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          {profile.name.toUpperCase()}
-        </motion.h1>
-
-        {/* Typed subtitle */}
-        <motion.p
-          className="text-lg md:text-xl"
-          style={{ color: 'var(--text-secondary)' }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <span id="hero-typed" style={{ color: 'var(--accent)' }} />
-        </motion.p>
 
         {/* Social links */}
         <motion.div

@@ -7,8 +7,9 @@ export const profile = {
   title: 'Senior Full Stack Developer',
   subtitle: 'Cloud Architect & Technical Leader',
   bio: [
-    "I'm a Senior Full Stack Developer with 5+ years of experience designing and implementing scalable, high-performance web solutions. Expert in Clean Architecture, microservices, and cloud-native applications.",
-    'Specialized in React.js 18, Vue.js 3, TypeScript, Node.js, Stripe integrations, and event-driven architectures with Kafka. Strong CI/CD background and technical leadership of multidisciplinary teams.',
+    "I'm a Senior Full Stack Developer with 6+ years of experience designing and delivering scalable, high-performance web solutions. Expert in Clean Architecture, microservices, and cloud-native applications on AWS.",
+    'Specialized in React.js 18, Next.js, TypeScript, Node.js, NestJS, and event-driven architectures with Kafka. Strong DevOps background with Docker, Kubernetes, Terraform, and CI/CD pipelines on GitHub Actions.',
+    'Deeply integrated with the AI ecosystem: building autonomous agent workflows with Claude API, Gemini, and Ollama; orchestrating multi-agent systems with MCP (Model Context Protocol) and N8N automation pipelines.',
   ],
   location: 'Guadalajara, Jalisco, México',
   // base64 encoded: jairaceves56@gmail.com

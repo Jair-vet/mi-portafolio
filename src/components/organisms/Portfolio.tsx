@@ -151,11 +151,29 @@ export const Portfolio: React.FC = () => {
               </motion.button>
             </div>
 
-            {/* Dots */}
-            <div className="flex justify-center gap-2 mt-5">
-              {carouselProjects.map((_, i) => (
-                <Dot key={i} active={i === currentIndex} onClick={() => setCurrentIndex(i)} />
-              ))}
+            {/* Indicator */}
+            <div className="flex justify-center items-center gap-4 mt-5">
+              <div className="flex gap-1.5">
+                {Array.from({ length: Math.min(5, carouselProjects.length) }, (_, i) => {
+                  const total = carouselProjects.length;
+                  let idx: number;
+                  if (total <= 5) {
+                    idx = i;
+                  } else if (currentIndex <= 2) {
+                    idx = i;
+                  } else if (currentIndex >= total - 3) {
+                    idx = total - 5 + i;
+                  } else {
+                    idx = currentIndex - 2 + i;
+                  }
+                  return (
+                    <Dot key={idx} active={idx === currentIndex} onClick={() => setCurrentIndex(idx)} />
+                  );
+                })}
+              </div>
+              <span className="text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>
+                {currentIndex + 1} / {carouselProjects.length}
+              </span>
             </div>
           </motion.div>
         </div>

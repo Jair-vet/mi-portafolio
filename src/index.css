@@ -97,7 +97,7 @@ img {
   animation: float 4s ease-in-out infinite;
 }
 
-/* ─── 3D Orbit (Hero Section) ────────────────────────────────────────────────── */
+/* ─── Tech Hero (Hero Section) ───────────────────────────────────────────────── */
 .background-circle {
   background: var(--orbit-circle);
   border-radius: 50%;
@@ -110,50 +110,59 @@ img {
   justify-content: center;
 }
 
-.orbit-circle {
+/* ─── Tech Ticker (linear conveyor belt, left→right) ─────────────────────────── */
+.tech-ticker {
   position: absolute;
-  width: 100px;
-  height: 100px;
-  transform-style: preserve-3d;
-  animation: animateCircle 40s linear infinite;
-}
-
-@keyframes animateCircle {
-  0%   { transform: perspective(1000px) rotateY(0deg)   rotateX(15deg) translateY(-20px); }
-  100% { transform: perspective(1000px) rotateY(360deg) rotateX(15deg) translateY(-20px); }
-}
-
-.orbit-circle span {
-  position: absolute;
-  top: 0;
+  bottom: 28px;
   left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  overflow-x: clip;
+  overflow-y: visible;
+  padding: 6px 0;
+  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  z-index: 20;
+}
+
+.tech-ticker-track {
+  display: flex;
+  gap: 14px;
+  width: max-content;
+  animation: ticker-ltr 55s linear infinite;
+}
+
+@keyframes ticker-ltr {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0%); }
+}
+
+.tech-ticker-item {
+  width: 74px;
+  height: 74px;
   background-color: var(--orbit-bg);
-  box-shadow: 0 0 8px var(--shadow);
   border-radius: 50%;
-  transform-origin: center;
-  transform-style: preserve-3d;
-  transform: rotateY(calc(var(--i) * calc(360deg / 16))) translateZ(300px);
+  box-shadow: 0 0 8px var(--shadow);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  cursor: default;
 }
 
-.orbit-circle span img {
-  width: 55px;
-  height: 55px;
+.tech-ticker-item img {
+  width: 52px;
+  height: 52px;
   object-fit: contain;
   border-radius: 50%;
 }
 
+
 @media (max-width: 768px) {
   .background-circle { width: 300px; height: 300px; }
-  .orbit-circle      { width: 60px; height: 60px; }
-  .orbit-circle span {
-    transform: rotateY(calc(var(--i) * calc(360deg / 16))) translateZ(180px);
-  }
-  .orbit-circle span img { width: 38px; height: 38px; }
+  .tech-ticker       { width: 300px; }
+  .tech-ticker-item  { width: 54px; height: 54px; }
+  .tech-ticker-item img { width: 38px; height: 38px; }
 }
 
 /* ─── Skill Bars ─────────────────────────────────────────────────────────────── */

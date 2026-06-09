@@ -32,7 +32,7 @@ export const Navbar: React.FC = () => {
           className="text-xl font-bold"
           style={{ fontFamily: "'Righteous', cursive", color: 'var(--accent)' }}
         >
-          JA<span style={{ color: 'var(--text-primary)' }}>.dev</span>
+          JAIR<span style={{ color: 'var(--text-primary)' }}>.dev</span>
         </a>
 
         {/* Desktop nav */}
