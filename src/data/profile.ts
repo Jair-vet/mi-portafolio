@@ -15,8 +15,6 @@ export const profile = {
   emailEncoded: 'amFpcmFjZXZlczU2QGdtYWlsLmNvbQ==',
   // base64 encoded: MX: (+52) 312 155 5316
   phoneEncoded: 'TVg6ICgrNTIpIDMxMiAxNTUgNTMxNg==',
-  // Current photo — update URL after uploading new photo to Cloudinary
-  photoUrl: 'https://res.cloudinary.com/dytlbyofu/image/upload/v1741046461/CV/IMG_5220_vyqrrr.jpg',
-  // CV PDF — update URL after uploading new PDF to Cloudinary
-  cvUrl: import.meta.env.VITE_CV_URL || 'https://res.cloudinary.com/dytlbyofu/image/upload/v1715033576/CV/Cv-sp_yxpn9z.pdf',
+  photoUrl: 'https://res.cloudinary.com/dytlbyofu/image/upload/v1781016445/ce50db14-833f-4983-a1da-47e382238f3a_pqcwog.jpg',
+  cvUrl: import.meta.env.VITE_CV_URL || 'https://res.cloudinary.com/dytlbyofu/image/upload/v1781015129/Jair_CV_Actualizado_gnjf3b.pdf',
 };
