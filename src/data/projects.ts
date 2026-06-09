@@ -13,11 +13,11 @@ export const projects: Project[] = [
   },
   {
     id: 2,
-    name: "BoosTiger Shop",
-    description: "Full e-commerce shop built with Vue.js, Firebase for auth and database, and Tailwindcss for a modern responsive UI.",
+    name: "Pizzeria",
+    description: "Simple landing page, shop built with Vue.js, Firebase for auth and database, and Tailwindcss for a modern responsive UI.",
     tools: ["Vue.js", "JavaScript", "Firebase", "Tailwindcss", "FormKit"],
-    image: "https://res.cloudinary.com/dytlbyofu/image/upload/v1698447739/Applications%20made/Boostiger_ryozjp.png",
-    link: "https://boostigershop.onrender.com/",
+    image: "https://res.cloudinary.com/dytlbyofu/image/upload/v1781022041/Captura_de_pantalla_2026-06-09_a_las_10.20.35_a._m._pntsbk.png",
+    link: "https://vermillion-caramel-8f2f71.netlify.app/",
   },
   {
     id: 3,
