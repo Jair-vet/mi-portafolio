@@ -1,54 +1,23 @@
-import type { SkillCategory } from '../types';
+import type { Skill } from '../types';
 
-export const skills: SkillCategory[] = [
-  {
-    title: "Front-end Development",
-    details: [
-      "React.js: Using Hooks, Context API, SPA, Next.js, Server Components, and Redux.",
-      "Angular: Enterprise applications with lazy loading, RxJS, TypeScript, and NgRx for state management.",
-      "Vue.js: Dynamic interfaces using Vuex, Pinia, and Nuxt.js for SSR and static site generation.",
-      "UI Frameworks: TailwindCSS, Material UI, Bootstrap, React Bootstrap, Angular Material, NG-Bootstrap, Nebular, and Vuetify.",
-      "State Management: Redux, Zustand, Jotai, Recoil, NgRx (Angular), Vuex, and Pinia (Vue).",
-      "Component Libraries: Storybook for UI components, Chakra UI, Ant Design, PrimeReact, and Radix UI.",
-      "TypeScript: Strongly typed applications for scalability and maintainability.",
-      "GraphQL & REST APIs: Apollo Client, Relay, Fetch, Axios, and tRPC.",
-    ],
-  },
-  {
-    title: "Back-end Development",
-    details: [
-      "Node.js & Express: RESTful APIs, authentication with JWT & OAuth, and database management.",
-      "Nest.js: Scalable applications using modular architecture and TypeScript.",
-      "Databases: PostgreSQL, MySQL, MongoDB, Firebase",
-      "Python & Django: High-performance back-end development.",
-      "Authentication & Authorization: OAuth, Firebase Auth, JWT, and Clerk.",
-    ],
-  },
-  {
-    title: "Testing & Code Quality",
-    details: [
-      "Jest & React Testing Library: Unit and integration testing for robust applications.",
-      "Cypress & Playwright: End-to-end testing automation.",
-      "ESLint & Prettier: Code linting and formatting.",
-      "Storybook: Component testing and isolation.",
-      "Swagger & OpenAPI: API documentation and validation.",
-    ],
-  },
-  {
-    title: "DevOps & Development Tools",
-    details: [
-      "Git & GitHub: Version control, branching strategies, and code reviews.",
-      "Docker & Kubernetes: Containerization and orchestration.",
-      "CI/CD: GitHub Actions, Vercel, and automated deployment pipelines.",
-    ],
-  },
-  {
-    title: "Design Patterns & Best Practices",
-    details: [
-      "Application of design patterns: MVC, Singleton, Factory, Observer, and Repository.",
-      "Clean Code principles and SOLID architecture.",
-      "Micro Frontends: Using Webpack Module Federation.",
-      "Progressive Web Apps (PWAs): Service Workers, Workbox, and offline capabilities.",
-    ],
-  },
+export const technicalSkills: Skill[] = [
+  { name: 'HTML & CSS', percentage: 95, category: 'frontend' },
+  { name: 'JavaScript', percentage: 92, category: 'frontend' },
+  { name: 'TypeScript', percentage: 90, category: 'frontend' },
+  { name: 'React.js', percentage: 90, category: 'frontend' },
+  { name: 'Next.js', percentage: 85, category: 'frontend' },
+  { name: 'TailwindCSS', percentage: 90, category: 'frontend' },
+  { name: 'Vue.js', percentage: 75, category: 'frontend' },
+  { name: 'Angular', percentage: 40, category: 'frontend' },
+];
+
+export const professionalSkills: Skill[] = [
+  { name: 'Node.js', percentage: 85, category: 'backend' },
+  { name: 'NestJS', percentage: 75, category: 'backend' },
+  { name: 'PostgreSQL', percentage: 80, category: 'backend' },
+  { name: 'MongoDB', percentage: 75, category: 'backend' },
+  { name: 'Docker', percentage: 80, category: 'devops' },
+  { name: 'AWS', percentage: 75, category: 'devops' },
+  { name: 'Git & CI/CD', percentage: 90, category: 'devops' },
+  { name: 'Python', percentage: 60, category: 'backend' },
 ];

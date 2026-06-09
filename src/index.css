@@ -1,10 +1,276 @@
 @import "tailwindcss";
 
+/* ─── Google Fonts (Poppins + Righteous) loaded via index.html ─────────────── */
+
+/* ─── CSS Custom Properties — Theme System ──────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --bg-primary:    #1e2326;
+  --bg-secondary:  #252a2e;
+  --bg-card:       #252b2f;
+  --bg-hero:       linear-gradient(to top, rgba(30,35,38,.95), rgba(30,35,38,1));
+  --text-primary:  #ffffff;
+  --text-secondary:#9ca3af;
+  --accent:        #1CB698;
+  --accent-hover:  #159876;
+  --accent-glow:   rgba(28,182,152,0.3);
+  --border:        rgba(28,182,152,0.2);
+  --orbit-bg:      #2d2e32;
+  --orbit-circle:  #28292d;
+  --skill-track:   #131517;
+  --shadow:        rgba(0,0,0,0.5);
+}
+
+[data-theme="light"] {
+  --bg-primary:    #f8fafc;
+  --bg-secondary:  #e2e8f0;
+  --bg-card:       #ffffff;
+  --bg-hero:       linear-gradient(to top, rgba(248,250,252,.97), rgba(241,245,249,1));
+  --text-primary:  #1e293b;
+  --text-secondary:#64748b;
+  --accent:        #0d9488;
+  --accent-hover:  #0f766e;
+  --accent-glow:   rgba(13,148,136,0.25);
+  --border:        rgba(13,148,136,0.25);
+  --orbit-bg:      #e2e8f0;
+  --orbit-circle:  #cbd5e1;
+  --skill-track:   #cbd5e1;
+  --shadow:        rgba(0,0,0,0.12);
+}
+
+/* ─── Global Reset & Font ────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* ─── Content Protection ─────────────────────────────────────────────────────── */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection in designated areas */
+.selectable {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* ─── Utility Animations ─────────────────────────────────────────────────────── */
 @keyframes pulse-shadow {
-  0%, 100% { box-shadow: 0 0 10px #159876; }
-  50%       { box-shadow: 0 0 20px #159876, 0 0 30px #159876; }
+  0%, 100% { box-shadow: 0 0 10px var(--accent-hover); }
+  50%       { box-shadow: 0 0 22px var(--accent-hover), 0 0 32px var(--accent-hover); }
 }
 
 .pulse-shadow {
   animation: pulse-shadow 1.5s infinite ease-in-out;
 }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+.float-anim {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ─── 3D Orbit (Hero Section) ────────────────────────────────────────────────── */
+.background-circle {
+  background: var(--orbit-circle);
+  border-radius: 50%;
+  width: 500px;
+  height: 500px;
+  box-shadow: 0 0 30px var(--shadow);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit-circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  transform-style: preserve-3d;
+  animation: animateCircle 40s linear infinite;
+}
+
+@keyframes animateCircle {
+  0%   { transform: perspective(1000px) rotateY(0deg)   rotateX(15deg) translateY(-20px); }
+  100% { transform: perspective(1000px) rotateY(360deg) rotateX(15deg) translateY(-20px); }
+}
+
+.orbit-circle span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--orbit-bg);
+  box-shadow: 0 0 8px var(--shadow);
+  border-radius: 50%;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  transform: rotateY(calc(var(--i) * calc(360deg / 16))) translateZ(300px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit-circle span img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .background-circle { width: 300px; height: 300px; }
+  .orbit-circle      { width: 60px; height: 60px; }
+  .orbit-circle span {
+    transform: rotateY(calc(var(--i) * calc(360deg / 16))) translateZ(180px);
+  }
+  .orbit-circle span img { width: 38px; height: 38px; }
+}
+
+/* ─── Skill Bars ─────────────────────────────────────────────────────────────── */
+.skill-track {
+  height: 8px;
+  width: 100%;
+  background-color: var(--skill-track);
+  border-radius: 4px;
+  position: relative;
+  margin-bottom: 6px;
+}
+
+.skill-fill {
+  background-color: var(--accent);
+  height: 8px;
+  border-radius: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: width 2s ease;
+}
+
+.skill-badge {
+  position: absolute;
+  height: 36px;
+  width: 36px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  line-height: 36px;
+  text-align: center;
+  top: -14px;
+  right: -14px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ─── Social Icons ───────────────────────────────────────────────────────────── */
+.social-icon-link {
+  transition: all 0.4s ease;
+  border: 2px solid var(--text-primary);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--text-primary);
+}
+
+.social-icon-link:hover {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ─── Interest Icons ─────────────────────────────────────────────────────────── */
+.interest-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 90px;
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-size: 11px;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: default;
+  gap: 4px;
+}
+
+.interest-card:hover {
+  background-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.interest-card i {
+  font-size: 26px;
+}
+
+/* ─── CV Download Button (overlay effect) ────────────────────────────────────── */
+.cv-button {
+  position: relative;
+  border: 2px solid var(--text-primary);
+  color: var(--text-primary);
+  padding: 12px 28px;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  transition: color 0.4s ease;
+}
+
+.cv-button .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: var(--accent);
+  z-index: 0;
+  transition: width 0.5s ease;
+}
+
+.cv-button:hover .overlay { width: 100%; }
+.cv-button:hover { color: #fff; }
+
+.cv-button span {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }

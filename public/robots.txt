@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /assets/
+
+# Prevent caching of the site
+X-Robots-Tag: noarchive
