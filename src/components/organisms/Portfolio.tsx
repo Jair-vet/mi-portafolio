@@ -12,7 +12,7 @@ const CARD_GAP = 24;
 const STEP = CARD_WIDTH + CARD_GAP;
 
 const featuredProject = projects[projects.length - 1];
-const carouselProjects = projects;
+const carouselProjects = [...projects].reverse();
 
 const CardFront: React.FC<{ project: Project }> = ({ project }) => (
   <img src={project.image} alt={project.name} className="w-full h-full object-cover" draggable={false} />
