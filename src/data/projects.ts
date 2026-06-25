@@ -592,4 +592,12 @@ export const projects: Project[] = [
     image: "https://res.cloudinary.com/dytlbyofu/image/upload/v1674004818/Applications%20made/404-mon_smyvek.png",
     link: "https://jair-vet.github.io/404-moon/",
   },
+  {
+    id: 74,
+    name: "BlockShop",
+    description: "Interactive landing page for assembly-style games. Three.js 3D scene, GSAP parallax scroll, cutting animation, CSS Lego art and neon effects.",
+    tools: ["React", "TypeScript", "Three.js", "GSAP", "Vite", "CSS Modules"],
+    image: "https://res.cloudinary.com/dytlbyofu/image/upload/v1782407656/Contruye_tu_mundo_app_xsslxv.png",
+    link: "https://imaginative-treacle-fe5733.netlify.app",
+  },
 ];
