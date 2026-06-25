@@ -9,7 +9,6 @@ export const projects: Project[] = [
     tools: ["React", "TypeScript", "PostgreSQL", "Express", "Node.js", "Tailwindcss", "Valibot"],
     image: "https://res.cloudinary.com/dytlbyofu/image/upload/v1715032456/Applications%20made/Administrador-Productos_wnuch5.png",
     link: "https://rest-api-pern-frontend.vercel.app",
-    featured: true,
   },
   {
     id: 2,

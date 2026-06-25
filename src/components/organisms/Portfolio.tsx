@@ -11,7 +11,7 @@ const CARD_WIDTH = 360;
 const CARD_GAP = 24;
 const STEP = CARD_WIDTH + CARD_GAP;
 
-const featuredProject = projects.find((p) => p.featured) ?? projects[0];
+const featuredProject = projects[projects.length - 1];
 const carouselProjects = projects;
 
 const CardFront: React.FC<{ project: Project }> = ({ project }) => (
